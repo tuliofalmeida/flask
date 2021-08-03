@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        {% if title == 'Home'%}
+        <title>{{title}} - API Tulio </title>
+        {%else%}
+        <title>{{title}} - FLASKGOD </title>
+        {% endif %}
+        <div>
+            Microblog:
+            <a href="/index">Home</a>
+            <a href="/login">Login</a>
+        </div>
+    </head>
+    <body>
+        {% if title == 'Home'%}
+        <h1> Bem-vindo, {{user.username}}</h1>
+        <h2> {{data[0][2]}} pessoas falram sobre Macaíba hoje!</h2>
+        {% else %}
+        <h1> Bem-vindo, FLASKGOD</h1>
+        {% endif %}
+        {% for post in post%}
+        <div><p>{{post.author.username}} disse: <b>{{post.body}}</b></p></div>
+        {%endfor%}
+        <hr>
+        {% block content %}{% endblock %}
+    </body>
+</html>

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>{{ user.username }}, você passou um dado com as seguintes características</h2>
+    <div><p> O dado contém {{data|length}} matrizes com {{data[1]|length}} valores em cada uma</p></div>
+    <div><p>Primeira matriz:</p></div>
+    {% for i in range(data[0]|length) %}
+    <div><p> {{i+1}}° valor = {{ data[0][i] }}</b></p></div>
+    {% endfor %}
+    <div><p>Segunda matriz:</p></div>
+    {% for i in range(data[0]|length) %}
+    <div><p>{{i+1}}° valor =  {{ data[1][i] }}</b></p></div>
+    {% endfor %}
+{% endblock %}
