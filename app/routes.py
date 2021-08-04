@@ -1,6 +1,6 @@
 import numpy as np
 from app import app
-from flask.templating import render_template
+from flask import render_template, flash, redirect
 from app.forms import LoginForm
 # from bokeh.plotting import figure
 # from bokeh.resources import CDN
@@ -36,8 +36,12 @@ def index():
     return render_template('pagina.html', title='Home',post=post,
                            data=data,user=user)
     
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
+    if form.validate_on_submit():
+        flash('Login requested for use {}, remember_me={}'(
+            form.username.data, form.remember_me.data))
+        return redirect(url_for('index'))
     return render_template('login.html', title='Login',form=form)
     
